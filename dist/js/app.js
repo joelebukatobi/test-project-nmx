@@ -139,13 +139,25 @@ document.addEventListener('DOMContentLoaded', function () {
   // Event listeners for search and input fields
   searchButton.addEventListener('click', function () {
     const searchKeyword = searchInput.value.trim();
-    fetchAndDisplayCustomers(selectHeader.textContent, searchKeyword);
+    if (searchKeyword) {
+      fetchAndDisplayCustomers(selectHeader.textContent, searchKeyword);
+    } else {
+      // Reset the sort order to the default value
+      selectHeader.textContent = 'Sort Order';
+      fetchAndDisplayCustomers(selectHeader.textContent);
+    }
   });
 
   searchInput.addEventListener('keyup', function (event) {
     if (event.key === 'Enter') {
       const searchKeyword = searchInput.value.trim();
-      fetchAndDisplayCustomers(selectHeader.textContent, searchKeyword);
+      if (searchKeyword) {
+        fetchAndDisplayCustomers(selectHeader.textContent, searchKeyword);
+      } else {
+        // Reset the sort order to the default value
+        selectHeader.textContent = 'Sort Order';
+        fetchAndDisplayCustomers(selectHeader.textContent);
+      }
     }
   });
 
